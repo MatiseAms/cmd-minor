@@ -1,23 +1,25 @@
 <template>
 	<main>
 		<section class="search-giphy">
-			<div class="row center search-giphy__title">
-				<div class="column">
-					<h1>Welcome to Giphy</h1>
-				</div>
+			<div class="row center">
+				<h1>Gifffffs</h1>
 			</div>
-			<form v-cloak class="row center search-giphy__form" @submit.prevent="searchGiphy">
+			<form class="row center search-giphy__form" @submit.prevent="searchGiphy">
 				<input
 					v-model="giphyQuery"
-					autofocus
 					type="text"
 					placeholder="Search here..."
-					class="background--black colum small-20 medium-14 search-giphy__input"
+					class="background--black column small-23 medium-21 large-14 search-giphy__input"
 				>
 			</form>
-			<div class="row center">
-				<div v-for="(item, index) in giphys" :key="index" class="column small-full medium-10 large-4 plaatje">
-					<img v-if="item" :src="item" alt="We have to provide an alt text but for now we don't have any">
+			<div class="row center search-giphy__image-grid">
+				<div v-for="(item, index) in giphys" :key="index" class="column small-full medium-10 large-4 search-giphy__image-container">
+					<img
+						v-if="item"
+						:src="item.image"
+						:alt="item.alt"
+						class="search-giphy__image"
+					>
 				</div>
 			</div>
 		</section>
@@ -34,13 +36,18 @@ export default {
 	},
 	methods: {
 		async searchGiphy() {
+			this.giphys = new Array(25);
 			const query = this.giphyQuery;
 			const APIKey = 'Z9BAE6N7AeyNHU8JzsvcOH3NTNHPL5TM';
 
 			const response = await this.$axios.get(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${APIKey}`);
-
 			if (response && response.status === 200) {
-				this.giphys = response.data.data.map((item) => item.images.fixed_height.url);
+				this.giphys = response.data.data.map((item) => {
+					return {
+						image: item.images.fixed_height.url,
+						alt: item.title
+					};
+				});
 			}
 		}
 	}
@@ -57,21 +64,25 @@ export default {
 		border: none;
 		margin-top: grid(1);
 	}
-}
-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-.plaatje {
-	background: hotpink;
-	margin: grid(0.5);
-	height: grid(4);
-	@media #{$medium-down} {
-		height: grid(10);
+	&__image-container {
+		position: relative;
+		background: url('/images/noise.gif');
+		margin: grid(0.5);
+		height: grid(4);
+		transition: 1s ease-out;
+		overflow: hidden;
+		transform: translateY(0);
+		@media #{$medium-down} {
+			height: grid(10);
+		}
+		@media #{$small-only} {
+			height: grid(24);
+		}
 	}
-	@media #{$small-only} {
-		height: grid(24);
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 }
 </style>
