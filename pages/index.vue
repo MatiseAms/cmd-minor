@@ -4,7 +4,7 @@
 			<div class="row center">
 				<h1>Gifffffs</h1>
 			</div>
-			<form class="row center search-giphy__form" @submit.prevent="searchGiphy">
+			<form v-cloak class="row center search-giphy__form" @submit.prevent="searchGiphy">
 				<input
 					v-model="giphyQuery"
 					type="text"
