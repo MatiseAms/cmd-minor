@@ -36,7 +36,7 @@ export default {
 			const query = this.giphyQuery;
 			const APIKey = 'Z9BAE6N7AeyNHU8JzsvcOH3NTNHPL5TM';
 
-			const response = await this.$axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${APIKey}`);
+			const response = await this.$axios.get(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${APIKey}`);
 
 			if (response && response.status === 200) {
 				this.giphys = response.data.data.map((item) => item.images.fixed_height.url);
