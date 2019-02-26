@@ -8,6 +8,7 @@
 				<input
 					v-model="giphyQuery"
 					type="text"
+					autofocus
 					placeholder="Search here..."
 					class="background--black column small-23 medium-21 large-14 search-giphy__input"
 				>
