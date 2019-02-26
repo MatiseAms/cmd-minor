@@ -1,7 +1,7 @@
 import pkg from './package';
 
 module.exports = {
-	mode: 'spa',
+	mode: 'universal',
 	/*
 	 ** Headers of the page
 	 */
