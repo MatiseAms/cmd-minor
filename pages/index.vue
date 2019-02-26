@@ -21,6 +21,9 @@
 						class="search-giphy__image"
 					>
 				</div>
+				<p v-if="!giphys.length">
+					0 resultaten, paniek alles in de fik
+				</p>
 			</div>
 		</section>
 	</main>
