@@ -22,7 +22,7 @@
 						class="search-giphy__image"
 					>
 				</div>
-				<p v-if="!giphys.length">
+				<p v-if="!giphys.length && giphySearched">
 					0 resultaten, paniek alles in de fik
 				</p>
 			</div>
@@ -35,6 +35,7 @@ export default {
 	data() {
 		return {
 			giphyQuery: '',
+			giphySearched: false,
 			giphys: []
 		};
 	},
@@ -43,7 +44,7 @@ export default {
 			this.giphys = new Array(25);
 			const query = this.giphyQuery;
 			const APIKey = 'Z9BAE6N7AeyNHU8JzsvcOH3NTNHPL5TM';
-
+			this.giphySearched = true;
 			const response = await this.$axios.get(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${APIKey}`);
 			if (response && response.status === 200) {
 				this.giphys = response.data.data.map((item) => {
