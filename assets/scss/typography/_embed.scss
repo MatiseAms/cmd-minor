@@ -1,24 +1,23 @@
-$font-primary: (
-	font-family: (
-		Inter,
-		sans-serif
-	),
-	load: true,
-	weights: (
-		'Regular': 400,
-		'SemiBold': 600
-	),
-	path: '~assets/fonts',
-	files: (
-		'woff2',
-		'ttf'
-	),
-	use: (
-		'p',
-		'h1',
-		'body'
-	),
-	types: (
-		'normal'
-	)
-);
+// $font-primary: (
+// 	font-family: (
+// 		Inter,
+// 		sans-serif
+// 	),
+// 	load: true,
+// 	weights: (
+// 		'Regular': 400,
+// 		'SemiBold': 600
+// 	),
+// 	path: '~assets/fonts',
+// 	files: (
+// 		'woff2',
+// 		'ttf'
+// 	),
+// 	use: (
+// 		'p',
+// 		'h1'
+// 	),
+// 	types: (
+// 		'normal'
+// 	)
+// );
